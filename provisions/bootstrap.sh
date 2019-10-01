@@ -24,22 +24,19 @@ sudo service nginx restart
 apt-add-repository ppa:ondrej/php
 apt-get update
 
-# # # Install PHP
-# apt-get install -y php7.2
+# # Install PHP
+apt-get install -y php7.2
 
-# # # PHP Mods
-# apt-get install -y php7.2-common php7.2-mcrypt php7.2-zip php7.2-mbstring php7.2-xml
+# # PHP Mods
+apt-get install -y php7.2-common php7.2-mcrypt php7.2-zip php7.2-mbstring php7.2-xml php7.2-mysql
 
-# # # Set MySQL Pass
-# debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-# debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+# #install composer
+curl -Ss https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/bin/composer
 
-# # #install composer
-# curl -Ss https://getcomposer.org/installer | php
-# sudo mv composer.phar /usr/bin/composer
+# # Set MySQL Pass
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
-# # # Install MySQL
-# apt-get install -y mysql-server
-
-# # # PHP-MYSQL lib
-# apt-get install -y php7.2-mysql
+# # Install MySQL
+apt-get install -y mysql-server
